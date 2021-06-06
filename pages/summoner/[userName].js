@@ -2,6 +2,15 @@ import { server } from '../../config'
 import RankedQueue from '../../component/ranked-queue'
 
 export default function Summoner({ data }) {
+
+    if (!data || data.error) {
+        return (
+            <div>
+                Not found
+            </div>
+        )
+    }
+
     return (
         <div className="pt-4">
             <div className="relative mx-auto pl-20" style={{width: "1000px"}}>
@@ -44,10 +53,14 @@ export default function Summoner({ data }) {
 export async function getServerSideProps(context) {
     const res = await fetch(`${server}/api/summoner/info`, {
         method: 'POST',
-        body: {
+        headers: {
+            "content-type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({
             region: "na1",
             username: context.params.userName
-        }
+        })
     });
 
     if (!res.ok) {
@@ -67,8 +80,6 @@ export async function getServerSideProps(context) {
             }
         }
     }
-
-    console.log(data)
 
     return {
         props: { data },

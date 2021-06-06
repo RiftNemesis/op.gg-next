@@ -10,17 +10,22 @@ const leagueEntry = {
 };
 
 export default async function info(req, res) {
-    if (req.username == null) {
-        res.status(400);
+    if (req.body.username == null) {
+        return res.status(400).json({
+            error: true,
+        });
     }
 
-    if (req.region == null) {
-        res.status(400);
+    if (req.body.region == null) {
+        return res.status(400).json({
+            error: true,
+            message: "Bad request body"
+        });
     }
 
     let summonerDTO = await riotAPI.summoner.getBySummonerName({
         region: PlatformId.NA1,
-        summonerName: "spooky",
+        summonerName: `${req.body.username}`,
     });
 
     let leagueEntryDTO = await riotAPI.league.getEntriesBySummonerId({
