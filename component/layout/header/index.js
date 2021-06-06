@@ -1,6 +1,6 @@
 export default function Header() {
     return (
-        <div className="bg-blue-500">
+      <div className="bg-blue-500">
         <div className="text-gray-300 py-4 text-sm">
           <div className="flex space-x-6 items-center">
             <img className="block pl-4" src="/images/opgg-logo.svg" height="16" alt="OP.GG" width="65" />
