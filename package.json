@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@fightmegg/riot-api": "^0.0.7",
-    "next": "latest",
+    "next": "11.1.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
